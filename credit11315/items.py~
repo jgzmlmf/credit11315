@@ -8,7 +8,7 @@
 from scrapy import Item, Field
 
 
-class Credit11315Item(Item):
+class Credit11315Item(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     content = Field()

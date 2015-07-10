@@ -3,7 +3,7 @@
 from scrapy import Spider
 from scrapy import log
 from scrapy import Request
-from credit11315.tool.xpath import classiUrl_xpath 
+from credit11315.tool.xpath.xpath import classiUrl_xpath 
 from credit11315.items import *
 
 import sys

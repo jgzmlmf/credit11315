@@ -1,7 +1,7 @@
 #coding: utf-8
 
 
-def classiUrl_xpath(response):
+def classiUrl_xpath(self,response):
     """
     extract url of all classi 
     from response of http://www.11315.com/rankAllList
