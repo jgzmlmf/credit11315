@@ -22,6 +22,8 @@ LOG_FILE = "/home/dyh/data/credit11315/detailUrl/log"
 DOWNLOADER_MIDDLEWARES = {
         'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
         'credit11315.rotate_useragent.RotateUserAgentMiddleware' :400
+        'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
+        'credit11315.middlewares.ProxyMiddleware': 100
     }
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent

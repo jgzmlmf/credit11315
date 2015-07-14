@@ -21,7 +21,7 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
             #print "********Current UserAgent:%s************" %ua
 
             #记录
-            log.msg('Current UserAgent: '+ua, level='INFO')
+            # log.msg('Current UserAgent: '+ua, level='INFO')
             request.headers.setdefault('User-Agent', ua)
             request.headers.setdefault('Connection', 'keep-alive')
             # request.headers.setdefault('referer', 'http://hd.chinatax.gov.cn/fagui/action/InitCredit.do')
