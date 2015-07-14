@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'credit11315.spiders'
 DEFAULT_ITEM_CLASS = 'credit11315.items.Credit11315Item'
 ITEM_PIPELINES=['credit11315.pipelines.Credit11315Pipeline']
 
-LOG_FILE = "/home/dyh/data/credit11315/log"
+LOG_FILE = "/home/dyh/data/credit11315/detailUrl/log"
 
 
 DOWNLOADER_MIDDLEWARES = {
