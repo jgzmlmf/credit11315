@@ -149,12 +149,11 @@ REDIS_STORAGE_PORT = 6379
 
 # ======================================================
 
-# DOWNLOADER_MIDDLEWARES = {
-#         'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
-#         'credit11315.rotate_useragent.RotateUserAgentMiddleware' :400
-#         'scrapy.contrib.downloadermiddleware.httpproxy.HttpProxyMiddleware': 110,
-#         'credit11315.middlewares.ProxyMiddleware': 100
-#     }
+# ======================================================
+#detail_info_scrapy.py的配置文件
+host = 'localhost'    #redis_host
+port = 6379           #redis_port
+# ======================================================
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'credit11315 (+http://www.yourdomain.com)'
