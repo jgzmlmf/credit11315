@@ -16,7 +16,7 @@ NEWSPIDER_MODULE = 'credit11315.spiders'
 DEFAULT_ITEM_CLASS = 'credit11315.items.Credit11315Item'
 ITEM_PIPELINES=['credit11315.pipelines.Credit11315Pipeline']
 
-LOG_FILE = "/home/dyh/data/credit11315/detailUrl/log"
+LOG_FILE = "/home/dyh/data/credit11315/infoDetail/log"
 
 #==============================================================
 #form guba_redis
@@ -134,18 +134,14 @@ RETRY_INIT_WAIT = 1 # 第一次重试等待1s
 RETRY_STABLE_TIMES = 100 # 重试100次之后WAIT不再增加
 RETRY_ADD_WAIT = 1 # 每次重试后增加的等待秒数
 
-PROXY_FROM_REDIS = True
+PROXY_FROM_REDIS = False 
 # Proxy ip list file
 PROXY_IP_FILE = './credit11315/proxy_ips.txt'
 PROXY_IP_REDIS_KEY = 'credit11315_proxy_ips:sorted_set'
 PROXY_IP_PUNISH = 10000 # 每次IP访问失败增加的等待时间
 
-# scrapy_redis中redis server的配置, # Specify the host and port to use when connecting to Redis (optional).
-REDIS_HOST = '219.224.135.91'
+REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
-REDIS_STORAGE_HOST = '219.224.135.91'
-REDIS_STORAGE_PORT = 6379
-
 
 # ======================================================
 

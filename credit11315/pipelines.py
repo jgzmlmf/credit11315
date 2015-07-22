@@ -7,12 +7,12 @@
 
 from scrapy import log
 import os
-os.chdir("/home/dyh/data/credit11315/detailUrl")
+os.chdir("/home/dyh/data/credit11315/infoDetail")
 class Credit11315Pipeline(object):
     def process_item(self, item, spider):
         if len(item.keys()) == 1:    #存的是content
             try:
-                os.chdir("/home/dyh/data/credit11315/detailUrl")
+                os.chdir("/home/dyh/data/credit11315/infoDetail")
                 with open(spider.writeInFile,"a") as f:
                     f.write(item["content"])
             except Exception,e:
@@ -20,7 +20,7 @@ class Credit11315Pipeline(object):
         else:
             for key in item.iterkeys():
                 try:
-                    os.chdir("/home/dyh/data/credit11315/detailUrl")
+                    os.chdir("/home/dyh/data/credit11315/infoDetail")
                     with open('detailInfoScrapy_'+key,"a") as f:
                         f.write(item[key]+"\n")
                 except Exception,e:

@@ -174,7 +174,7 @@ class ProxyMiddleware(object):
             # Set the location of the proxy
             randomidx = random.randint(0, self.proxy_ips_length-1)
             proxy_ip_port = self.proxy_ips[randomidx]  # "http://111.13.12.202" # "http://218.108.242.124:8080"
-            print proxy_ip_port, "middlewares proxy"
+            print proxy_ip_port "middlewares proxy"
         request.meta['proxy'] = proxy_ip_port
 
         # Use the following lines if your proxy requires authentication

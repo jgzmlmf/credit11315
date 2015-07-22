@@ -114,24 +114,24 @@ class GetDetailInfo(Spider):
         """
         第五部分 金融信贷信息
         """
-        #url = 'http://www.11315.com/\
-        #getTradeLendingCount?companyId=%s'%response.url[7:15]
-        #header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36",
-        #  'Referer':response.url}
-        #req = urllib2.Request(url=url, headers=header)
-        #xtml = urllib2.urlopen(req)
-        #Nums = xtml.read()
-        #print Nums, "this is Nums"
-        #Nums = eval(Nums).split(",")
-        #print Nums, "this is anothor Nums"
-        #total = str(sum([int(i) for i in Nums]))
-        #Nums.insert(0, total)  #在头部插入
-        #if total == '0':
-        #    t_url = ""
-        #else:
-        #    t_url = sel.xpath(u"//script").re(ur"html\(\'<a href=\"([\w\W]*?)\"")[0]
-        #Nums.append(t_url)
-        #Nums_re = "|".join(Nums)
+        url = 'http://www.11315.com/\
+        getTradeLendingCount?companyId=%s'%response.url[7:15]
+        header = {'User-Agent':"Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36",
+          'Referer':response.url}
+        req = urllib2.Request(url=url, headers=header)
+        xtml = urllib2.urlopen(req)
+        Nums = xtml.read()
+        print Nums, "this is Nums"
+        Nums = eval(Nums).split(",")
+        print Nums, "this is anothor Nums"
+        total = str(sum([int(i) for i in Nums]))
+        Nums.insert(0, total)  #在头部插入
+        if total == '0':
+            t_url = ""
+        else:
+            t_url = sel.xpath(u"//script").re(ur"html\(\'<a href=\"([\w\W]*?)\"")[0]
+        Nums.append(t_url)
+        Nums_re = "|".join(Nums)
         keywords_list = ['4-2.民间借贷评价信息']
         item["credit_fin"] = Nums_re + "\001" \
         + block_info_extract(response, keywords_list)
