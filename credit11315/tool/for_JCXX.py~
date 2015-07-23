@@ -18,7 +18,7 @@ def extract_combine_JCXX(response):
         tmp = sel.xpath(i).extract()
         if len(tmp) == 0:
             xpath_result.append("")
-        elif len(tmp) == 1 &('java' not in tmp[0]):   #只一元素且不是"javascript:void(0);"
+        elif len(tmp) == 1:
             xpath_result.append("http://00225516.11315.com"+tmp[0].strip())
         else:
             log.msg("error for_JCXX xpath_syn1 xpath_result=%s\

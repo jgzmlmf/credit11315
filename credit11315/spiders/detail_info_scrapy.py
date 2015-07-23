@@ -13,6 +13,7 @@ from scrapy import Selector
 from scrapy.exceptions import DontCloseSpider
 import sys
 from credit11315.items import *
+from credit11315.middlewares import UnknownResponseError
 from credit11315.tool.for_ominated_strip import for_ominated_data
 from credit11315.tool.for_JCXX import extract_combine_JCXX
 from credit11315.tool.for_all_blocks_info_extract import block_info_extract
@@ -82,6 +83,11 @@ class GetDetailInfo(Spider):
         解析
         """
         sel = Selector(text=response.body)
+        try:
+            assert len(sel.xpath(u"//b[text()='法定代表人']")) != 0 #判别是否为要输入验证码
+        except Exception, e:
+            raise UnknownResponseError
+        log.msg("code=%s, responsebody %s"%(str(response.status),response.body), level=log.INFO)
         #========================================================
         """
         第一部分：企业信用档案
@@ -133,15 +139,14 @@ class GetDetailInfo(Spider):
         #Nums.append(t_url)
         #Nums_re = "|".join(Nums)
         keywords_list = ['4-2.民间借贷评价信息']
-        item["credit_fin"] = Nums_re + "\001" \
-        + block_info_extract(response, keywords_list)
+        item["credit_fin"] = block_info_extract(response, keywords_list)
         #=======================================================
         """
         第六部分 企业运营信息
         """
-        keywords_list = ['5-3.水电煤气电话费信息',
-        '5-4.纳税信息']
-        item['operation_info'] = block_info_extract(response, keywords_list)
+        #keywords_list = ['5-3.水电煤气电话费信息',
+        #'5-4.纳税信息']                          #要么运行js,要么模拟请求，破网站，就两行数据至于吗
+        #item['operation_info'] = block_info_extract(response, keywords_list)
         #========================================================
         """
         第七部分 市场反馈信息
