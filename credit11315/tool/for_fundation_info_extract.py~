@@ -20,7 +20,7 @@ def fundation_info_extract(response):
             following-sibling::td[1]//a/text()")
     xpath_syn.append(u"//b[text()='法定代表人']/../\
             following-sibling::td[1]/img/@src")
-    html_parser = HTMLParser
+    html_parser = HTMLParser.HTMLParser()
     clue = '&nbsp;&nbsp;&nbsp;&nbsp;'
     newclue = html_parser.unescape(clue)
     x_te = u"//span[text()='%s']/../../\

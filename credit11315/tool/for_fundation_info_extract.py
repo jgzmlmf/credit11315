@@ -18,8 +18,7 @@ def fundation_info_extract(response):
                 /text()"%i for i in keywords_list]
     xpath_syn.append(u"//b[text()='单位名称']/../\
             following-sibling::td[1]//a/text()")
-    xpath_syn.append(u"//b[text()='法定代表人']/../\
-            following-sibling::td[1]/img/@src")
+    xpath_syn.append(u"//img[@alt='法定代表人']/@src")
     html_parser = HTMLParser.HTMLParser()
     clue = '&nbsp;&nbsp;&nbsp;&nbsp;'
     newclue = html_parser.unescape(clue)

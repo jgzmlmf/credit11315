@@ -88,12 +88,12 @@ class GetDetailInfo(Spider):
         解析
         """
         sel = Selector(text=response.body)
-        print len(sel.xpath(u"//b[text()='法定代表人']"))!= 0, "parse 条件"
-        log.msg("parse 条件=%s"%str(len(sel.xpath(u"//b[text()='法定代表人']")) != 0), level=log.INFO)
-        if (len(sel.xpath(u"//b[text()='法定代表人']")) != 0): #判别是否为要输入验证码
+        print len(sel.xpath(u"//b[text()='单位名称']"))!= 0, "parse 条件"
+        log.msg("parse 条件=%s"%str(len(sel.xpath(u"//b[text()='单位名称']")) != 0), level=log.INFO)
+        if (len(sel.xpath(u"//b[text()='单位名称']")) != 0): #判别是否为要输入验证码
             pass
         else:
-            log.msg("code=%s,  %s"%(str(response.status),len(sel.xpath(u"//b[text()='法定代表人']"))), level=log.INFO)
+            log.msg("code=%s,  %s"%(str(response.status),response.body), level=log.INFO)
             raise UnknownResponseError
         #========================================================
         """
@@ -163,7 +163,7 @@ class GetDetailInfo(Spider):
         '6-4.其他']
         item['feedback_info'] = block_info_extract(response, keywords_list)
         #========================================================
-        yield item
+        return item
         #else: 
         #    print "raise unknownresponseError in spider", response.request.meta
         #    #raise UnknownResponseError

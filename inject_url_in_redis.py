@@ -9,6 +9,6 @@ f = open(mypath, "r")
 i = 0
 for line in f:
     myRedis.lpush("all_detail_url", line.strip())
-    i = i + 1
-    if i>=100:
-        break
+    #i = i + 1
+    #if i>=5:
+    #    break

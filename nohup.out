@@ -1,33 +1,116 @@
 /usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
   category=ScrapyDeprecationWarning, stacklevel=1)
-Traceback (most recent call last):
-  File "/usr/local/bin/scrapy", line 11, in <module>
-    sys.exit(execute())
-  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 143, in execute
-    _run_print_help(parser, _run_command, cmd, args, opts)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 89, in _run_print_help
-    func(*a, **kw)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 150, in _run_command
-    cmd.run(args, opts)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/commands/crawl.py", line 57, in run
-    crawler = self.crawler_process.create_crawler()
-  File "/usr/local/lib/python2.7/site-packages/scrapy/crawler.py", line 87, in create_crawler
-    self.crawlers[name] = Crawler(self.settings)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/crawler.py", line 25, in __init__
-    self.spiders = spman_cls.from_crawler(self)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 35, in from_crawler
-    sm = cls.from_settings(crawler.settings)
-  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 31, in from_settings
-    return cls(settings.getlist('SPIDER_MODULES'))
-  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 22, in __init__
-    for module in walk_modules(name):
-  File "/usr/local/lib/python2.7/site-packages/scrapy/utils/misc.py", line 68, in walk_modules
-    submod = import_module(fullpath)
-  File "/usr/local/lib/python2.7/importlib/__init__.py", line 37, in import_module
-    __import__(name)
-  File "/home/dyh/spiders/credit11315/credit11315/spiders/detail_info_scrapy.py", line 92
-    log.msg("parse 条件=%s")%str(len(sel.xpath(u"//b[text()='法定代表人']")) != 0), level=log.INFO)
-                                                                                                         ^
-SyntaxError: invalid syntax
 /usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
   category=ScrapyDeprecationWarning, stacklevel=1)
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad59674320> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+setup_redis work
+from_settings work
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.15847992897033691, 'proxy': 'http://117.177.243.30:85', 'download_slot': '55272277.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.19028806686401367, 'proxy': 'http://111.12.117.68:80', 'download_slot': '55278062.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.18799591064453125, 'proxy': 'http://111.12.117.68:8080', 'download_slot': '55272229.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.22318601608276367, 'proxy': 'http://111.12.117.68:8083', 'download_slot': '55272129.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.22490692138671875, 'proxy': 'http://117.177.243.72:85', 'download_slot': '55272172.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.16756796836853027, 'proxy': 'http://117.177.243.30:84', 'download_slot': '55272229.11315.com', 'retry_times': 0}
+raise unknow in
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.29213690757751465, 'proxy': 'http://112.84.130.11:80', 'download_slot': '55278062.11315.com', 'retry_times': 0}
+True parse 条件
+True parse 条件
+True parse 条件
+True parse 条件
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 2.7551867961883545, 'proxy': 'http://117.177.243.37:83', 'download_slot': '55272778.11315.com'}
+raise unknow in
+True parse 条件
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.2928760051727295, 'proxy': 'http://112.84.130.18:80', 'download_slot': '55278062.11315.com', 'retry_times': 1}
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 102.3120801448822, 'proxy': 'http://117.177.243.50:82', 'download_slot': '55001460.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 101.2101321220398, 'proxy': 'http://117.177.243.51:8082', 'download_slot': '54808705.11315.com'}
+raise unknow in
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 101.2118399143219, 'proxy': 'http://218.92.227.165:12946', 'download_slot': '54808716.11315.com'}
+True parse 条件
+True parse 条件
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 111.45947694778442, 'proxy': 'http://124.202.221.26:8118', 'download_slot': '54610851.11315.com'}
+raise unknow in
+True parse 条件
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.33838486671447754, 'proxy': 'http://124.161.94.8:80', 'download_slot': '46029604.11315.com'}
+raise unknow in
+True parse 条件
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.098358154296875, 'proxy': 'http://218.92.227.165:18253', 'download_slot': '51164244.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.097041130065918, 'proxy': 'http://218.92.227.165:18888', 'download_slot': '51164234.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.096710920333862, 'proxy': 'http://218.92.227.165:33925', 'download_slot': '51164224.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.105227947235107, 'proxy': 'http://218.92.227.165:19328', 'download_slot': '55278062.11315.com', 'retry_times': 2}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 205.06650590896606, 'proxy': 'http://218.92.227.165:33942', 'download_slot': '46009316.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 204.72833395004272, 'Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad576d6d70> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad5f427f50> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad5f427c80> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad5912dc08> ignored
+Exception RuntimeError: 'maximum recursion depth exceeded while calling a Python object' in <function remove at 0x7fad57554230> ignored
+proxy': 'http://218.92.227.166:33919', 'download_slot': '54610851.11315.com', 'retry_times': 0}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 206.10258293151855, 'proxy': 'http://218.92.227.165:33987', 'download_slot': '54808716.11315.com', 'retry_times': 1}
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 208.2751109600067, 'proxy': 'http://218.92.227.165:35010', 'download_slot': '51164240.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 205.07783699035645, 'retry_times': 1, 'proxy': 'http://218.92.227.165:24379', 'download_slot': '51164220.11315.com'}
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.0946180820465088, 'proxy': 'http://58.220.2.133:80', 'download_slot': '37798370.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.14072585105896, 'proxy': 'http://218.92.227.165:18186', 'download_slot': '37798409.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 4.135149002075195, 'proxy': 'http://218.92.227.170:20771', 'download_slot': '37798327.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 205.16425895690918, 'proxy': 'http://218.92.227.165:35098', 'download_slot': '37798416.11315.com'}
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.3092029094696, 'proxy': 'http://117.177.243.30:85', 'download_slot': '37798327.11315.com', 'retry_times': 1}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.33417296409607, 'proxy': 'http://117.177.243.30:84', 'download_slot': '35556160.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.33238792419434, 'proxy': 'http://117.177.243.30:83', 'download_slot': '35556097.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.32882881164551, 'proxy': 'http://111.12.117.68:8080', 'download_slot': '35555965.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.2679629325866699, 'proxy': 'http://117.177.243.37:83', 'download_slot': '35331021.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.41296005249023, 'proxy': 'http://117.177.243.51:8082', 'download_slot': '35556128.11315.com'}
+raise unknow in
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 104.41320586204529, 'proxy': 'http://117.177.243.50:82', 'download_slot': '35556118.11315.com'}
+raise unknow in
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 0.09941577911376953, 'proxy': 'http://58.220.2.137:80', 'download_slot': '35172788.11315.com'}
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.375472068786621, 'proxy': 'http://113.207.63.26:55336', 'download_slot': '35329098.11315.com'}
+raise unknow in
+True parse 条件
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.1084020137786865, 'proxy': 'http://218.92.227.165:12946', 'download_slot': '35172787.11315.com'}
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.1112639904022217, 'proxy': 'http://218.92.227.165:19328', 'download_slot': '35555965.11315.com', 'retry_times': 0}
+False parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 1.384310007095337, 'proxy': 'http://202.108.35.151:80', 'download_slot': '35331177.11315.com'}
+raise unknow in
+True parse 条件
+True parse 条件
+True parse 条件
+raise unknownresponseError out {'download_timeout': 180, 'download_latency': 108.58486199378967, 'proxy': 'http://218.92.227.165:18253', 'download_slot': '35556118.11315.com', 'retr
