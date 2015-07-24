@@ -132,9 +132,9 @@ RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 408]
 # RetryForeverMiddleware
 RETRY_INIT_WAIT = 1 # 第一次重试等待1s
 RETRY_STABLE_TIMES = 100 # 重试100次之后WAIT不再增加
-RETRY_ADD_WAIT = 1 # 每次重试后增加的等待秒数
+RETRY_ADD_WAIT = 0 # 每次重试后增加的等待秒数
 
-PROXY_FROM_REDIS = False 
+PROXY_FROM_REDIS = True 
 # Proxy ip list file
 PROXY_IP_FILE = './credit11315/proxy_ips.txt'
 PROXY_IP_REDIS_KEY = 'credit11315_proxy_ips:sorted_set'

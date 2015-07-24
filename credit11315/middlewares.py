@@ -131,7 +131,9 @@ class RetryErrorResponseMiddleware(object):
                     level=log.ERROR, spider=spider, request=request, retries=retries, reason=reason, ip=self.ip, pid=self.pid)
 
     def process_spider_exception(self, response, exception, spider):
-        if 'dont_retry' not in response.request.meta and isinstance(exception, UnknownResponseError):
+        print "raise unknownresponseError out", response.request.meta
+        if (isinstance(exception, UnknownResponseError)) and ('dont_retry' not in response.request.meta):
+            print "raise unknow in"
             return [self._retry(response.request, exception, spider)]
 
 class ProxyMiddleware(object):

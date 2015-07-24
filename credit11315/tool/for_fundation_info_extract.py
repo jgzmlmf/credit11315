@@ -2,6 +2,7 @@
 #coding: utf-8
 from scrapy import Selector
 from scrapy import log
+import HTMLParser
 
 def fundation_info_extract(response):
     """
@@ -19,8 +20,12 @@ def fundation_info_extract(response):
             following-sibling::td[1]//a/text()")
     xpath_syn.append(u"//b[text()='法定代表人']/../\
             following-sibling::td[1]/img/@src")
-    xpath_syn.append(u"//table[@class='con-table']/\
-            tr[3]/td[2]/text()")   #行业
+    html_parser = HTMLParser.HTMLParser()
+    clue = '&nbsp;&nbsp;&nbsp;&nbsp;'
+    newclue = html_parser.unescape(clue)
+    x_te = u"//span[text()='%s']/../../\
+            following-sibling::td[1]/text()"%newclue
+    xpath_syn.append(x_te)   #行业
     xpath_syn.append(u"//b[text()='商务网址']/../\
                 following-sibling::td[1]/a/@href")
     xpath_syn.append(u"//b[text()='联系电话']/../\
@@ -37,5 +42,5 @@ def fundation_info_extract(response):
              for i in tmp_x]))
             log.msg("twomore %s url=%s"%("|".join([str(i).strip()\
              for i in tmp_x]), response.url),level=log.INFO)
-    return "\001".join(tmp_x)
+    return "\001".join(xpath_result)
 

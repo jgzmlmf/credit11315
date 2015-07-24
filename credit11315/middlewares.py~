@@ -131,7 +131,9 @@ class RetryErrorResponseMiddleware(object):
                     level=log.ERROR, spider=spider, request=request, retries=retries, reason=reason, ip=self.ip, pid=self.pid)
 
     def process_spider_exception(self, response, exception, spider):
-        if 'dont_retry' not in response.request.meta and isinstance(exception, UnknownResponseError):
+        print "raise unknownresponseError out", response.request.meta
+        if ('dont_retry' not in response.request.meta) and (isinstance(exception, UnknownResponseError)):
+            print "raise unknow in"
             return [self._retry(response.request, exception, spider)]
 
 class ProxyMiddleware(object):
@@ -174,7 +176,7 @@ class ProxyMiddleware(object):
             # Set the location of the proxy
             randomidx = random.randint(0, self.proxy_ips_length-1)
             proxy_ip_port = self.proxy_ips[randomidx]  # "http://111.13.12.202" # "http://218.108.242.124:8080"
-            print proxy_ip_port "middlewares proxy"
+            print proxy_ip_port, "middlewares proxy"
         request.meta['proxy'] = proxy_ip_port
 
         # Use the following lines if your proxy requires authentication

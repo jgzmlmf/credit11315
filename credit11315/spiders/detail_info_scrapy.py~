@@ -13,7 +13,7 @@ from scrapy import Selector
 from scrapy.exceptions import DontCloseSpider
 import sys
 from credit11315.items import *
-from credit11315.middlewares import UnknownResponseError
+from credit11315.middlewares import UnknownResponseError, ForbbidenResponseError
 from credit11315.tool.for_ominated_strip import for_ominated_data
 from credit11315.tool.for_JCXX import extract_combine_JCXX
 from credit11315.tool.for_all_blocks_info_extract import block_info_extract
@@ -48,8 +48,10 @@ class GetDetailInfo(Spider):
         self.server = self.from_settings() #连接服务器
         self.crawler.signals.connect(self.spider_idle, \
             signal=signals.spider_idle)  #绑定信号
-        self.crawler.signals.connect(self.item_scraped, \
-            signal=signals.item_scraped)
+        #self.crawler.signals.connect(self.item_scraped, \
+        #    signal=signals.item_scraped)     #速度太慢
+        self.crawler.signals.connect(self.request_scheduled,\
+                signal=signals.request_scheduled)
 
     def from_settings(self):
         print "from_settings work"
@@ -78,16 +80,21 @@ class GetDetailInfo(Spider):
         """Avoids waiting for the spider to  idle before scheduling the next request"""
         self.schedule_next_request()
 
+    def request_scheduled(self, *args, **kwargs):
+        self.schedule_next_request()
+
     def parse(self, response):
         """
         解析
         """
         sel = Selector(text=response.body)
-        try:
-            assert len(sel.xpath(u"//b[text()='法定代表人']")) != 0  #判别是否为要输入验证码
-        except:
+        print len(sel.xpath(u"//b[text()='法定代表人']"))!= 0, "parse 条件"
+        log.msg("parse 条件=%s")%str(len(sel.xpath(u"//b[text()='法定代表人']")) != 0), level=log.INFO)
+        if (len(sel.xpath(u"//b[text()='法定代表人']")) != 0): #判别是否为要输入验证码
+            pass
+        else:
+            log.msg("code=%s,  %s"%(str(response.status),len(sel.xpath(u"//b[text()='法定代表人']"))), level=log.INFO)
             raise UnknownResponseError
-        log.msg("code=%s, responsebody %s"%(str(response.status),response.body), level=log.INFO)
         #========================================================
         """
         第一部分：企业信用档案
@@ -157,6 +164,15 @@ class GetDetailInfo(Spider):
         item['feedback_info'] = block_info_extract(response, keywords_list)
         #========================================================
         yield item
+        #else: 
+        #    print "raise unknownresponseError in spider", response.request.meta
+        #    #raise UnknownResponseError
+        #    #raise ForbbidenResponseError("work or no nnnnnn")
+        #    request = response.request
+        #    retryreq = request.copy()
+        #    retryreq.dont_filter = True
+        #    log.msg("UnknowResponseError %s"%response.body, level=log.INFO)
+        #    yield retryreq
 
 
 

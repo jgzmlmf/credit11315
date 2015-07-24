@@ -1,10 +1,33 @@
 /usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
   category=ScrapyDeprecationWarning, stacklevel=1)
-/usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
-  category=ScrapyDeprecationWarning, stacklevel=1)
-/usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
-  category=ScrapyDeprecationWarning, stacklevel=1)
-/usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
-  category=ScrapyDeprecationWarning, stacklevel=1)
+Traceback (most recent call last):
+  File "/usr/local/bin/scrapy", line 11, in <module>
+    sys.exit(execute())
+  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 143, in execute
+    _run_print_help(parser, _run_command, cmd, args, opts)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 89, in _run_print_help
+    func(*a, **kw)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/cmdline.py", line 150, in _run_command
+    cmd.run(args, opts)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/commands/crawl.py", line 57, in run
+    crawler = self.crawler_process.create_crawler()
+  File "/usr/local/lib/python2.7/site-packages/scrapy/crawler.py", line 87, in create_crawler
+    self.crawlers[name] = Crawler(self.settings)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/crawler.py", line 25, in __init__
+    self.spiders = spman_cls.from_crawler(self)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 35, in from_crawler
+    sm = cls.from_settings(crawler.settings)
+  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 31, in from_settings
+    return cls(settings.getlist('SPIDER_MODULES'))
+  File "/usr/local/lib/python2.7/site-packages/scrapy/spidermanager.py", line 22, in __init__
+    for module in walk_modules(name):
+  File "/usr/local/lib/python2.7/site-packages/scrapy/utils/misc.py", line 68, in walk_modules
+    submod = import_module(fullpath)
+  File "/usr/local/lib/python2.7/importlib/__init__.py", line 37, in import_module
+    __import__(name)
+  File "/home/dyh/spiders/credit11315/credit11315/spiders/detail_info_scrapy.py", line 92
+    log.msg("parse 条件=%s")%str(len(sel.xpath(u"//b[text()='法定代表人']")) != 0), level=log.INFO)
+                                                                                                         ^
+SyntaxError: invalid syntax
 /usr/local/lib/python2.7/site-packages/scrapy/contrib/pipeline/__init__.py:21: ScrapyDeprecationWarning: ITEM_PIPELINES defined as a list or a set is deprecated, switch to a dict
   category=ScrapyDeprecationWarning, stacklevel=1)
