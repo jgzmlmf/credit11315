@@ -48,10 +48,10 @@ class GetDetailInfo(Spider):
         self.server = self.from_settings() #连接服务器
         self.crawler.signals.connect(self.spider_idle, \
             signal=signals.spider_idle)  #绑定信号
-        #self.crawler.signals.connect(self.item_scraped, \
-        #    signal=signals.item_scraped)     #速度太慢
-        self.crawler.signals.connect(self.request_scheduled,\
-                signal=signals.request_scheduled)
+        self.crawler.signals.connect(self.item_scraped, \
+           signal=signals.item_scraped)     #速度太慢
+        # self.crawler.signals.connect(self.request_scheduled,\
+        #         signal=signals.request_scheduled)
 
     def from_settings(self):
         print "from_settings work"
