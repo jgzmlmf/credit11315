@@ -19,7 +19,7 @@ ITEM_PIPELINES=['credit11315.pipelines.Credit11315Pipeline']
 LOG_FILE = "/home/dyh/data/credit11315/infoDetail/log"
 
 #==============================================================
-#form guba_redis
+#from guba
 
 # 不需要默认的180秒,更多的机会留给重试
 # The amount of time (in secs) that the downloader will wait before timing out, Default: 180.
@@ -27,39 +27,11 @@ DOWNLOAD_TIMEOUT = 180
 
 
 SPIDER_MIDDLEWARES = {
-    # Filters out Requests for URLs outside the domains covered by the spider.
-    'scrapy.contrib.spidermiddleware.offsite.OffsiteMiddleware': None,
-
-    # Populates Request Referer header, based on the URL of the Response which generated it.
-    'scrapy.contrib.spidermiddleware.referer.RefererMiddleware': None,
-
-    # Filters out requests with URLs longer than URLLENGTH_LIMIT
-    'scrapy.contrib.spidermiddleware.urllength.UrlLengthMiddleware': None,
-
-    # DepthMiddleware is a scrape middleware used for tracking the depth of 
-    # each Request inside the site being scraped. It can be used to limit 
-    # the maximum depth to scrape or things like that.
-    'scrapy.contrib.spidermiddleware.depth.DepthMiddleware': None,
-
-    # Filter out unsuccessful (erroneous) HTTP responses so that spiders 
-    # don’t have to deal with them, which (most of the time) imposes an overhead, 
-    # consumes more resources, and makes the spider logic more complex.
-    # According to the HTTP standard, successful responses are those whose status codes are in the 200-300 range.
-    # If you still want to process response codes outside that range, you can specify which response codes the spider 
-    # is able to handle using the handle_httpstatus_list spider attribute or HTTPERROR_ALLOWED_CODES setting.
-    'scrapy.contrib.spidermiddleware.httperror.HttpErrorMiddleware': None, # 50,
-
-    # handle 403 forbidden error
-    'credit11315.middlewares.Forbbiden403Middleware': 48,
-
     # handle 302 deleted error
-    'credit11315.middlewares.Redirect302Middleware': 49,
+    'credit11315.middlewares.Not200Middleware': 49,
 
     # retry forever middleware
-    'credit11315.middlewares.RetryForeverMiddleware': 930,
-
-    # retry 3 times middleware
-    'credit11315.middlewares.RetryErrorResponseMiddleware': 940
+    'credit11315.middlewares.RecordSpiderErrorMiddleware': 930
 }
 
 DOWNLOADER_MIDDLEWARES = {
@@ -118,23 +90,14 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.contrib.downloadermiddleware.httpcache.HttpCacheMiddleware': None
 }
 
-# If enabled, Scrapy will wait a random amount of time (between 0.5 and 1.5 * DOWNLOAD_DELAY)
-# while fetching requests from the same website.
-RANDOMIZE_DOWNLOAD_DELAY = True
 
 REFERER_ENABLED = False # disable RefererMiddleware
 
-# retry middleware settings
-RETRY_TIMES = 3 # RetryMiddleware Maximum number of times to retry, in addition to the first download. RetryErrorResponseMiddleware 重试次数
-RETRY_ENABLED = True
-RETRY_HTTP_CODES = [500, 502, 503, 504, 400, 408]
+RETRY_ENABLED = False
 
-# RetryForeverMiddleware
-RETRY_INIT_WAIT = 1 # 第一次重试等待1s
-RETRY_STABLE_TIMES = 100 # 重试100次之后WAIT不再增加
-RETRY_ADD_WAIT = 0 # 每次重试后增加的等待秒数
 
-PROXY_FROM_REDIS = False 
+
+PROXY_FROM_REDIS = True 
 # Proxy ip list file
 PROXY_IP_FILE = './credit11315/proxy_ips.txt'
 PROXY_IP_REDIS_KEY = 'credit11315_proxy_ips:sorted_set'
@@ -150,6 +113,3 @@ REDIS_PORT = 6379
 host = 'localhost'    #redis_host
 port = 6379           #redis_port
 # ======================================================
-
-# Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'credit11315 (+http://www.yourdomain.com)'

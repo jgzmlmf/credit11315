@@ -76,8 +76,9 @@ class RecordSpiderErrorMiddleware(object):
 
     def _record(self, response, reason, spider):
         request = response.request
-        log.msg(format="undown_personid %(request)s (failed %(retries)d times): %(reason)s, current ip: %(ip)s, current pid: %(pid)s",
-                level=log.ERROR, spider=spider, request=request, reason=reason)
+        log.msg(format="undown_personid %(request)s: %(reason)s %(headers)s %(ip)s",
+                level=log.ERROR, spider=spider, request=request, reason=reason,\
+                        headers=request.headers,ip=request.meta['proxy'])
         proxy_ip = request.meta['proxy']
         self.redis.zincrby(self.proxy_redis_key, proxy_ip, amount=self.proxy_ip_punish/2)  #对因引起对方服务器注意的ip，其惩罚值减半
         return []
@@ -115,7 +116,7 @@ class ProxyMiddleware(object):
     def process_request(self, request, spider):
         if self.proxy_from_redis:
             # 从效果最好的20个IP中随即选取一个IP
-            rs = self.redis.zrange(self.proxy_redis_key, 0, 19)
+            rs = self.redis.zrange(self.proxy_redis_key, 0, 49)
             rs_length = len(rs)
             if rs_length:
                 randomidx = random.randint(0, rs_length - 1)
@@ -149,21 +150,39 @@ class IgnoreHttpError(IgnoreRequest):
 class Not200Middleware(object):
     """处理状态码不是200的情况
     """
-    def __init__(self):
-        pass
+    def __init__(self,proxy_ip_redis_key, proxy_redis_host, proxy_redis_port, proxy_ip_punish):
+        self.redis = _default_redis(proxy_redis_host, proxy_redis_port)
+        self.proxy_redis_key = proxy_ip_redis_key
+        self.proxy_ip_punish = proxy_ip_punish
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        settings = crawler.settings
+        proxy_ip_redis_key = settings.get('PROXY_IP_REDIS_KEY', None)
+        proxy_redis_host = settings.get('REDIS_HOST', None)
+        proxy_redis_port = settings.get('REDIS_PORT', None)
+        proxy_ip_punish = settings.get('PROXY_IP_PUNISH', None)
+        return cls(proxy_ip_redis_key, proxy_redis_host, proxy_redis_port, \
+                proxy_ip_punish)
 
     def process_spider_input(self, response, spider):
         if response.status != 200:
             raise IgnoreHttpError(response, 'not 200, Ignoring non-200 response')
 
     def process_spider_exception(self, response, exception, spider):
+        request = response.request
         if isinstance(exception, IgnoreHttpError):
             log.msg(
-                    format="Ignoring response.request %(response)r: 302 deleted",
+                    format="Ignoring response.request %(response)r: not 200 %(reason)s,%(headers)s,\
+                            %(ip)s",
                     level=log.ERROR,
-                    spider=spider,
-                    response=response.request
+                    response=request,
+                    reason = exception,
+                    headers = request.headers,
+                    ip = request.meta['proxy']
             )
+            proxy_ip = request.meta['proxy']
+            self.redis.zincrby(self.proxy_redis_key, proxy_ip, amount=self.proxy_ip_punish/2)  #对因引起对方服务器注意的ip，其惩罚值减半
 
             return []
 
@@ -190,9 +209,10 @@ class DownloadTimeoutRetryMiddleware(object):
                 proxy_ip_punish)
 
     def _retry(self, request, reason, spider):
-        request = response.request
-        log.msg(format="undown_personid %(request)s (failed %(retries)d times): %(reason)s, current ip: %(ip)s, current pid: %(pid)s",
-                level=log.ERROR, spider=spider, request=request, reason=reason)
+        log.msg(format="undown_personid %(request)s : %(reason)s,%(headers)s,\
+                %(ip)s",
+                level=log.ERROR, request=request, reason=reason, headers=request.headers,\
+                        ip=request.meta['proxy'])
 
         raise IgnoreRequest
 

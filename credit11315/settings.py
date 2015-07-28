@@ -74,10 +74,6 @@ DOWNLOADER_MIDDLEWARES = {
     # this middleware handles redirection of requests based on response status.
     'scrapy.contrib.downloadermiddleware.redirect.RedirectMiddleware': None,
 
-    # This middleware enables working with sites that require cookies, such as 
-    # those that use sessions. It keeps track of cookies sent by web servers, 
-    # and send them back on subsequent requests (from that spider), just like web browsers do.
-    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': None,
 
     # This middleware adds support for chunked transfer encoding
     'scrapy.contrib.downloadermiddleware.chunked.ChunkedTransferMiddleware': 830,
@@ -91,7 +87,6 @@ DOWNLOADER_MIDDLEWARES = {
 }
 
 
-REFERER_ENABLED = False # disable RefererMiddleware
 
 RETRY_ENABLED = False
 
