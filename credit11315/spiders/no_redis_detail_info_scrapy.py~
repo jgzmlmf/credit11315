@@ -33,14 +33,6 @@ class GetDetailInfo(Spider):
     name = 'noredisdetail'
     start_urls = ['http://www.11315.com']
 
-    def set_crawler(self,crawler):
-        super(GetDetailInfo, self).set_crawler(crawler)
-        self.crawler.signals.connect(self.spider_idle,\
-                signal=signals.spider_idle) 
-    
-    def spider_idle(self):
-        raise DontCloseSpider
-
     def parse(self,response):
         urlPath = '/home/dyh/data/credit11315/detailUrl\
         /uniq_all_detail_url'
